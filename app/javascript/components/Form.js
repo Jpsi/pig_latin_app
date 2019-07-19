@@ -18,7 +18,7 @@ function Form() {
   return(
       <section className="Form">
         <p>
-          Enter word in English to translate into Pig Latin:
+          Enter a word or a sentence in English to translate into Pig Latin:
         </p>
         <form onSubmit= {handleInput} >
           <input type="text" name="user_input" />
