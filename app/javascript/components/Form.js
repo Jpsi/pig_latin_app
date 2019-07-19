@@ -18,7 +18,9 @@ function Form() {
   return(
       <section className="Form">
         <p>
-          Enter a word or a sentence in English to translate into Pig Latin:
+          Welcome!
+          <br/>This is an English to <a href="https://en.wikipedia.org/wiki/Pig_Latin">Pig Latin</a> translator.
+          <br/>To translate, enter a word or a sentence in the box below and press Enter on your keyboard.
         </p>
         <form onSubmit= {handleInput} >
           <input type="text" name="user_input" />
