@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import Rails from '@rails/ujs'
 
 function Form() {
 
-  const [userInput, setUserInput] = useState()
+  const [translation, setTranslation] = useState()
 
   function handleInput(event) {
     event.preventDefault();
-    setUserInput(event.target[0].value)
+    Rails.ajax({
+      url: "/translations",
+      type: "POST",
+      data: `original_text=${event.target[0].value}`,
+      success: (response) => {setTranslation(response); }
+    }); 
   }
 
   return(
@@ -15,12 +21,16 @@ function Form() {
           Enter word in English to translate into Pig Latin:
         </p>
         <form onSubmit= {handleInput} >
-          <input type="text" name="inputtext" />
+          <input type="text" name="user_input" />
         </form>
-        <p>
-          You entered:
+        <p className="Form-paragraph">
+          Input:<br/>
+          <b>{ translation && translation.original_text }</b>
         </p>
-        { userInput }
+        <p className="Form-paragraph">
+          Translation:<br/>
+          <b>{ translation && translation.translated_text }</b>
+        </p>
       </section>
     )
 }
